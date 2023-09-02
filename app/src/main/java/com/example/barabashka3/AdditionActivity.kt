@@ -105,7 +105,7 @@ class AdditionActivity : AppCompatActivity() {
                 result: ActivityResult ->
             if (result.resultCode == RESULT_OK){
                 val number = result.data?.getIntExtra("numbers",6)
-                val seconds = result.data?.getIntExtra("seconds",9)
+                val seconds = result.data?.getIntExtra("seconds",3)
                 val numDig = result.data?.getBooleanExtra("switch",false)
                 Log.d("Launcher", "Result from Activity2 $number")
                 Log.d("Launcher", "Result from Activity2 $seconds")

@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import java.util.Locale
 import java.util.Random
 import java.util.concurrent.ThreadLocalRandom
 
@@ -49,6 +50,9 @@ class DivisionActivity : AppCompatActivity() {
         handler = Handler()
         initComponents()
         initListeners()
+
+        // initialize the text to speech manager class
+        TextToSpeechManager.init(this)
     }
 
     private fun initListeners() {
@@ -56,6 +60,9 @@ class DivisionActivity : AppCompatActivity() {
             tvCorrectSolution.setVisibility(View.INVISIBLE)
             etSolution.setText("")
             Toast.makeText(applicationContext,"¡Empezamos!",Toast.LENGTH_LONG).show()
+
+            speech("Ваш ответ...")
+
             tvQualification.setTextColor(ContextCompat.getColor(this, R.color.background_app))
             tvOperation.setTextColor(ContextCompat.getColor(this, R.color.green_700))
             tvQualification.text="V"
@@ -98,6 +105,7 @@ class DivisionActivity : AppCompatActivity() {
 
                 Toast.makeText(applicationContext,"¡Correcto!",Toast.LENGTH_LONG).show()
 
+                speech("Правильно!!!")
 
                 tvQualification.setTextColor(ContextCompat.getColor(this, R.color.green_700))
 
@@ -106,6 +114,9 @@ class DivisionActivity : AppCompatActivity() {
             else {
                 //showAlert()
                 Toast.makeText(applicationContext, "¡NO es Correcto!", Toast.LENGTH_LONG).show()
+
+                speech("Не правильно!!!")
+
                 tvQualification.text="X"
                 tvQualification.setTextColor(ContextCompat.getColor(this, R.color.red_700))
 
@@ -114,7 +125,17 @@ class DivisionActivity : AppCompatActivity() {
         }
     }
 
+    private fun speech(toSpeech:String){
 
+        val toSpeak = toSpeech
+        // set the language to be used for the speech conversion
+        //val language = Locale("en", "US")
+        val language = Locale("ru", "RU")
+        //val language = Locale("es", "ES")
+
+        // invoke the method with the text and the language
+        TextToSpeechManager.instance.speak(toSpeak, language)
+    }
     override fun onBackPressed() {
         // Aquí puedes agregar tu lógica personalizada para el evento de retroceso
 
