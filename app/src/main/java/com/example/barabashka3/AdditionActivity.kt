@@ -377,10 +377,15 @@ class AdditionActivity : AppCompatActivity() {
                 isTimerRunning = false
                 Log.d(tag,"currSequence0 = $currSequence")
                 num1=num1+num2
+
+                Log.d(tag,"num2 = $num2")
+                Log.d(tag,"num1 = $num1")
+
                 num2=0
                 //tvNumber1.text=num1.toString()
                 //tvNumber1.text="sum"
                 resultCorSum=num1.toString()
+
                 currSequence++
                 if (currSequence>0 && currSequence <= numSequence)  {
                     Log.d(tag,"currSequence1 = $currSequence")
